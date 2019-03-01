@@ -1,0 +1,71 @@
+﻿@model IEnumerable<coreblog.Models.BlogPost>
+@{
+    ViewBag.Title = "BlogPosts";
+}
+ 
+<h2>BlogPosts</h2>
+<div class="container">
+    <div class="row">
+
+
+        <!-- Latest Posts -->
+        <main class="posts-listing col-lg-8">
+            <div class="container">
+                <div class="row">
+                    <!-- post -->
+
+                    @foreach (var post in Model)
+                    {
+                        <div class="post col-xl-6">
+                            <div class="post-thumbnail"><a href=@Url.Action("Details","BlogPosts", new { slug = @post.Slug})><img src=@post.MediaURL alt="..." class="img-fluid img-blogposts"></a></div>
+                            <div class="post-details">
+                                <div class="post-meta d-flex justify-content-between">
+                                    <div class="date meta-last">@*@post.Updated*@</div>
+
+                                </div><a href=@Url.Action("Details","BlogPosts", new { slug = @post.Slug})>
+                                    <h3 class="h4">@post.Title</h3>
+                                </a>
+                                <p>@post.Abstract</p>
+                                <footer class="post-footer d-flex align-items-center">
+                                    <a href="#" class="author d-flex align-items-center flex-wrap">
+                                        <div class="avatar"><img src="~/img/avatar-1.jpg" alt="..." class="img-fluid"></div>
+                                        <div class="title"><span>Juan Carlos Corea</span></div>
+                                    </a>
+                                    <div class="date"><i class="icon-clock"></i> @post.Created.ToString("mm/dd/yyyy")</div>
+                                    <div class="comments "><i class="icon-comment"></i>@post.Comments.Count()</div>
+                                </footer>
+                            </div>
+                        </div>
+
+                    }
+                    <br />
+
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination pagination-template d-flex justify-content-center">
+                            <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+                            <li class="page-item"><a href="#" class="page-link active">1</a></li>
+                            <li class="page-item"><a href="#" class="page-link">2</a></li>
+                            <li class="page-item"><a href="#" class="page-link">3</a></li>
+                            <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
+        </main>
+        <aside class="col-lg-4">
+            <!-- Widget [Search Bar Widget]-->
+            <div class="widget search">
+                <header>
+                    <h3 class="h6">Search the blog</h3>
+                </header>
+                <form action="#" class="search-form">
+                    <div class="form-group">
+                        <input type="search" placeholder="What are you looking for?">
+                        <button type="submit" class="submit"><i class="icon-search"></i></button>
+                    </div>
+                </form>
+            </div>
+           
+        </aside>
+    </div>
+</div>
