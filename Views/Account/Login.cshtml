@@ -2,8 +2,8 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
+    
 }
-
 <h2>@ViewBag.Title.</h2>
 <div class="row">
     <div class="col-md-8">
@@ -44,10 +44,10 @@
                 <p>
                     @Html.ActionLink("Register as a new user", "Register")
                 </p>
-            
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>
+
+                <p>
+                    @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                </p>
             }
         </section>
     </div>
@@ -56,8 +56,16 @@
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
-</div>
-
+    </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    $("#login-button").click(function (event) {
+        event.preventDefault();
+
+        $('form').fadeOut(500);
+        $('.wrapper').addClass('form-success');
+    });
+    </script>
+  
 }

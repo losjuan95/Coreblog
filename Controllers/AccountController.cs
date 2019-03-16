@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using coreblog.Models;
 using System.Net.Mail;
+using System.Web.Configuration;
 
 namespace coreblog.Controllers
 {
@@ -243,11 +244,20 @@ namespace coreblog.Controllers
                 // Send an email with this link
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                
-                return RedirectToAction("ForgotPasswordConfirmation", "Account");
 
-                
+                var from = $"CoreBlog<{WebConfigurationManager.AppSettings["emailfrom"]}>";
+                var message = new MailMessage(from, model.Email)
+                {
+                    Subject = "Reset Password",
+                    Body = "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>",
+                    IsBodyHtml = true
+                };
+
+                var emailService = new PersonalEmail();
+                await emailService.SendAsync(message);
+
+                return View("Login");
+
             }
 
             // If we got this far, something failed, redisplay form

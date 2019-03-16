@@ -11,8 +11,8 @@ namespace coreblog.Models
         public int BlogPostId { get; set; }
         public string AuthorId { get; set; }
         public string Body { get; set; }
-        public DateTimeOffset Created { get; set; }
-        public DateTimeOffset? Updated { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime? Updated { get; set; }
         public string UpdateReason { get; set; }
 
         public virtual BlogPost BlogPost { get; set; }

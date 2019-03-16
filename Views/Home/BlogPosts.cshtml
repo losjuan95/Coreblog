@@ -1,9 +1,14 @@
 ﻿@model IEnumerable<coreblog.Models.BlogPost>
 @{
     ViewBag.Title = "BlogPosts";
+    
 }
- 
-<h2>BlogPosts</h2>
+@using PagedList;
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<br />
+<h2 style="text-align:center">BlogPosts</h2>
 <div class="container">
     <div class="row">
 
@@ -31,7 +36,7 @@
                                         <div class="avatar"><img src="~/img/avatar-1.jpg" alt="..." class="img-fluid"></div>
                                         <div class="title"><span>Juan Carlos Corea</span></div>
                                     </a>
-                                    <div class="date"><i class="icon-clock"></i> @post.Created.ToString("mm/dd/yyyy")</div>
+                                    <div class="date"><i class="icon-clock"></i> @post.Created.ToString("MM/dd/yyyy")</div>
                                     <div class="comments "><i class="icon-comment"></i>@post.Comments.Count()</div>
                                 </footer>
                             </div>
@@ -51,6 +56,7 @@
                         </ul>
                     </nav>
                 </div>
+                </div>
         </main>
         <aside class="col-lg-4">
             <!-- Widget [Search Bar Widget]-->
@@ -65,7 +71,7 @@
                     </div>
                 </form>
             </div>
-           
+
         </aside>
     </div>
 </div>

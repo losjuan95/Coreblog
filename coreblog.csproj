@@ -400,6 +400,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
+    <Content Include="Content\Customlogin.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fontastic.css" />
     <Content Include="Content\jquery.fancybox.min.css" />
@@ -419,6 +420,7 @@
     <Content Include="img\coffee-laptop-background.jpg" />
     <Content Include="img\Coffee-time.jpg" />
     <Content Include="img\coffee1.jpg" />
+    <Content Include="img\core icon 1.png" />
     <Content Include="img\core icon.jpg" />
     <Content Include="img\defaultavatar.png" />
     <Content Include="img\favicon.ico" />

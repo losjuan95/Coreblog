@@ -83,7 +83,7 @@ namespace coreblog.Controllers
 
 
                 blogPost.Slug = Slug;
-                blogPost.Created = DateTimeOffset.Now;
+                blogPost.Created = DateTime.Now;
                 db.BlogPosts.Add(blogPost);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -136,7 +136,7 @@ namespace coreblog.Controllers
                     blogPost.MediaURL = "/Uploads/" + fileName;
                 }
                 blogPost.Slug = Slug;
-                blogPost.Updated = DateTimeOffset.Now;
+                blogPost.Updated = DateTime.Now;
                 db.Entry(blogPost).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

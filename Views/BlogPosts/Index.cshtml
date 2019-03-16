@@ -3,10 +3,11 @@
 @{
     ViewBag.Title = "Index";
 }
+<br />
+<br />
+<h2 style="text-align:center">BlogPosts</h2>
 
-<h2>BlogPosts</h2>
-
-
+<br />
 @if (User.IsInRole("Admin"))
 {
     <p>
@@ -15,69 +16,70 @@
     </p>
 }
 
+<br />
+<br />
 
-
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Created)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Updated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Abstract)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Slug)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.MediaURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Published)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var blogPost in Model)
-    {
+<table class="table jq-data">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => blogPost.Created)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => blogPost.Updated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => blogPost.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => blogPost.Abstract)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => blogPost.Slug)
-            </td>
-           
-            <td>
-                @Html.DisplayFor(modelItem => blogPost.MediaURL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => blogPost.Published)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = blogPost.Id }) |
-                @Html.ActionLink("Details", "Details", new { Slug = blogPost.Slug }) |
-                @Html.ActionLink("Delete", "Delete", new { id = blogPost.Id })
-            </td>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Updated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+
+
+            @*<th>
+                @Html.DisplayNameFor(model => model.Body)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.MediaURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Published)
+            </th>
+            <th></th>
         </tr>
-    }
+    </thead>
+   
+    <tbody>
+        @foreach (var blogPost in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => blogPost.Created)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => blogPost.Updated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => blogPost.Title)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => blogPost.MediaURL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => blogPost.Published)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = blogPost.Id }) |
+                    @Html.ActionLink("Details", "Details", new { Slug = blogPost.Slug }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = blogPost.Id })
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+   
 
 </table>
+<br />
+<br />

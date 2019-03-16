@@ -28,7 +28,7 @@
                                     @Html.ActionLink("Juan Carlos Corea", "Index", "Home", null, new { @class = "title" })
                                 </a>
                                 <div class="d-flex align-items-center flex-wrap">
-                                    <div class="date"><i class="icon-clock"></i> @Model.Created.ToString("mm/dd/yyyy")</div>
+                                    <div class="date"><i class="icon-clock"></i> @Model.Created.ToString("MM/dd/yyyy")</div>
                                 </div>
                             </div>
                             <div class="post-body">
@@ -46,7 +46,7 @@
                                         <div class="comment-header d-flex justify-content-between">
                                             <div class="user d-flex align-items-center">
                                                 <div class="image"><img src="~/img/defaultavatar.png" alt="..." class="img-fluid rounded-circle"></div>
-                                                <div class="title"><strong>@comment.Author.FirstName</strong><span class="date">@comment.Created.ToString("mm/dd/yyyy")</span></div>
+                                                <div class="title"><strong>@comment.Author.FirstName</strong><span class="date">@comment.Created.ToString("MM/dd/yyyy")</span></div>
                                             </div>
                                         </div>
                                         <div class="comment-body">

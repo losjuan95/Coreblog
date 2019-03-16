@@ -15,8 +15,8 @@ namespace coreblog.Models
 
 
         public int Id { get; set; }
-        public DateTimeOffset Created { get; set; }
-        public DateTimeOffset? Updated { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime? Updated { get; set; }
         public string Title { get; set; }
         public string Abstract { get; set; }
         public string Slug { get; set; }

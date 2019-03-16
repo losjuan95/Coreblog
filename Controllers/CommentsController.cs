@@ -60,7 +60,7 @@ namespace coreblog.Controllers
                     BlogPostId = id,
                     AuthorId = User.Identity.GetUserId(),
                     Body = commentbody,
-                    Created = DateTimeOffset.Now
+                    Created = DateTime.Now
 
                 };
                 db.Comments.Add(comment);

@@ -6,3 +6,227 @@ min-width:150px;
 max-width:150px;
 
 }
+.back {
+    width: 33%;
+    height: 200px;
+    float: left;
+    background-color: #eeeeee;
+    border: 10px;
+    border-color: #ffffff;
+    border-style: solid;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    counter-increment: bc;
+    padding: 0px 5px 5px 5px;
+}
+
+    .back:before {
+        content: counter(bc) "_";
+        position: absolute;
+        padding: 10px;
+    }
+
+.button_base {
+    margin: 0;
+    border: 0;
+    font-size: 18px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -100px;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    cursor: default;
+}
+
+    .button_base:hover {
+        cursor: pointer;
+    }
+.b05_3d_roll {
+    perspective: 500px;
+    -webkit-perspective: 500px;
+    -moz-perspective: 500px;
+}
+
+    .b05_3d_roll div {
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        height: 50px;
+        padding: 10px;
+        border: #000000 solid 1px;
+        pointer-events: none;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+
+        .b05_3d_roll div:nth-child(1) {
+            color: #000000;
+            background-color: #000000;
+            transform: rotateX(90deg);
+            -webkit-transform: rotateX(90deg);
+            -moz-transform: rotateX(90deg);
+            transition: all 0.2s ease;
+            -webkit-transition: all 0.2s ease;
+            -moz-transition: all 0.2s ease;
+            transform-origin: 50% 50% -25px;
+            -webkit-transform-origin: 50% 50% -25px;
+            -moz-transform-origin: 50% 50% -25px;
+        }
+
+        .b05_3d_roll div:nth-child(2) {
+            color: #000000;
+            background-color: #ffffff;
+            transform: rotateX(0deg);
+            -webkit-transform: rotateX(0deg);
+            -moz-transform: rotateX(0deg);
+            transition: all 0.2s ease;
+            -webkit-transition: all 0.2s ease;
+            -moz-transition: all 0.2s ease;
+            transform-origin: 50% 50% -25px;
+            -webkit-transform-origin: 50% 50% -25px;
+            -moz-transform-origin: 50% 50% -25px;
+        }
+
+    .b05_3d_roll:hover div:nth-child(1) {
+        color: #ffffff;
+        transition: all 0.2s ease;
+        -webkit-transition: all 0.2s ease;
+        -moz-transition: all 0.2s ease;
+        transform: rotateX(0deg);
+        -webkit-transform: rotateX(0deg);
+        -moz-transform: rotateX(0deg);
+    }
+
+    .b05_3d_roll:hover div:nth-child(2) {
+        background-color: #000000;
+        transition: all 0.2s ease;
+        -webkit-transition: all 0.2s ease;
+        -moz-transition: all 0.2s ease;
+        transform: rotateX(-90deg);
+        -webkit-transform: rotateX(-90deg);
+        -moz-transform: rotateX(-90deg);
+    }
+.b09_electric {
+    color: #000000;
+    background-color: #ffffff;
+    border: #000000 solid 1px;
+    padding: 10px;
+    transition: all 0.1s ease;
+    -webkit-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+}
+
+    .b09_electric:hover {
+        color: #ffffff;
+        background-color: #000000;
+        animation: b09_electric_blinkIn 0.1s step-end 0 2;
+        -webkit-animation: b09_electric_blinkIn 0.1s step-end 0 2;
+        -moz-animation: b09_electric_blinkIn 0.1s step-end 0 2;
+        transition: all 0.2s ease 0.2s;
+        -webkit-transition: all 0.2s ease 0.2s;
+        -moz-transition: all 0.2s ease 0.2s;
+    }
+
+@-webkit-keyframes b09_electric_blinkIn {
+    from, to {
+        background-color: #f8f8f8;
+        color: #080808;
+    }
+
+    50% {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+@-moz-keyframes b09_electric_blinkIn {
+    from, to {
+        background-color: #f8f8f8;
+        color: #080808;
+    }
+
+    50% {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+gar{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    text-justify: inter-word;
+    display: inline-block;
+    padding: 10px;
+}
+
+.col-md-8 {
+    text-align: center;
+    text-justify: inter-word;
+    display: inline-block;
+}
+    .center {
+        margin: auto;
+        width: 50%;
+        border: 3px solid;
+        padding: 10px;
+    }
+
+
+
+
+
+/*****************************************
+  upload button styles
+******************************************/
+.file-upload {
+    position: relative;
+    display: inline-block;
+}
+
+.file-upload__label {
+    display: block;
+    padding: 1em 2em;
+    color: #fff;
+    background: #222;
+    border-radius: .4em;
+    transition: background .3s;
+   
+}
+
+.fil:hover {
+    cursor: pointer;
+    background: #000;
+}
+
+
+
+.file-upload__input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    font-size: inherit;
+    width: 0;
+    height: 100%;
+    opacity: 0;
+}
+
+/*****************************************
+ design styles
+******************************************/
+.fil {
+    font-family: 'helvetica neue', 'arial', sans-serif;
+    font-weight: bold;
+    padding-top: 5em;
+    text-align: center;
+}
