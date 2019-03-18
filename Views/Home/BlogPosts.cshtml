@@ -1,10 +1,9 @@
-﻿@model IEnumerable<coreblog.Models.BlogPost>
-@{
-    ViewBag.Title = "BlogPosts";
-    
-}
+﻿@*@model IEnumerable<coreblog.Models.BlogPost>*@
 @using PagedList;
 @using PagedList.Mvc;
+
+@model IPagedList<coreblog.Models.BlogPost>
+
 
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 <br />
@@ -18,8 +17,8 @@
             <div class="container">
                 <div class="row">
                     <!-- post -->
-
-                    @foreach (var post in Model)
+                    <br />
+                    @foreach (var post in Model.OrderByDescending(b => b.Created))
                     {
                         <div class="post col-xl-6">
                             <div class="post-thumbnail"><a href=@Url.Action("Details","BlogPosts", new { slug = @post.Slug})><img src=@post.MediaURL alt="..." class="img-fluid img-blogposts"></a></div>
@@ -55,8 +54,14 @@
                             <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
                         </ul>
                     </nav>
+
+                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                    @Html.PagedListPager(Model, page => Url.Action("BlogPosts", new { page, searchStr = ViewBag.Search }));
+
+                    @*page @(model.pagecount < model.pagenumber ? 0 : model.pagenumber) of @model.pagecount
+                    @html.pagedlistpager(model, page => url.action("BlogPosts", new { page, searchstr = viewbag.search }));*@
                 </div>
-                </div>
+            </div>
         </main>
         <aside class="col-lg-4">
             <!-- Widget [Search Bar Widget]-->

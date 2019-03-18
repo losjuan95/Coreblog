@@ -17,9 +17,13 @@ namespace coreblog.Models
         public int Id { get; set; }
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
+
+        [MaxLength(30), MinLength(5)]
         public string Title { get; set; }
         public string Abstract { get; set; }
         public string Slug { get; set; }
+
+        [MaxLength(2500), MinLength(1)]
         [AllowHtml]
         public string Body { get; set; }
 

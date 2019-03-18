@@ -54,13 +54,16 @@ namespace coreblog.Controllers
         }
 
 
-            public ActionResult BlogPosts()
+        public ActionResult BlogPosts(int? page, string searchStr)
         {
-            
-            return View(db.BlogPosts.ToList().OrderByDescending(b => b.Created));
+            var pageSize = 3;
+            var pageNumber = (page ?? 1);
+            ViewBag.Search = searchStr;
+            var blogList = IndexSearch(searchStr);
 
+            return View(blogList.ToPagedList(pageNumber, pageSize));
         }
-            
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
