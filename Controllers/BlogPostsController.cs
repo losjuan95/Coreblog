@@ -16,7 +16,6 @@ using PagedList.Mvc;
 namespace coreblog.Controllers
 {
     [RequireHttps]
-    [Authorize]
     public class BlogPostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

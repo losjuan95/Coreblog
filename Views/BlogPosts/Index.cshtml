@@ -8,78 +8,85 @@
 <h2 style="text-align:center">BlogPosts</h2>
 
 <br />
-@if (User.IsInRole("Admin"))
-{
-    <p>
+<div style="text-align:center">
+    @if (User.IsInRole("Admin"))
+    {
+        <p>
 
-        @Html.ActionLink("Create New", "Create")
-    </p>
-}
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+</div>
+
 
 <br />
 <br />
+<div class="container">
+    <div class="row">
+        <table class="table jq-data">
+            <thead>
+                <tr>
 
-<table class="table jq-data">
-    <thead>
-        <tr>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Created)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Updated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-
-
-            @*<th>
-                @Html.DisplayNameFor(model => model.Body)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.MediaURL)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Published)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-   
-    <tbody>
-        @foreach (var blogPost in Model)
-        {
-
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => blogPost.Created)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => blogPost.Updated)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => blogPost.Title)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => blogPost.MediaURL)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => blogPost.Published)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = blogPost.Id }) |
-                    @Html.ActionLink("Details", "Details", new { Slug = blogPost.Slug }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = blogPost.Id })
-                </td>
-            </tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Created)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Updated)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
 
 
-        }
-    </tbody>
-   
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.Body)
+                    </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.MediaURL)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Published)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
 
-</table>
+            <tbody>
+                @foreach (var blogPost in Model)
+                {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => blogPost.Created)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => blogPost.Updated)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => blogPost.Title)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => blogPost.MediaURL)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => blogPost.Published)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = blogPost.Id }) |
+                            @Html.ActionLink("Details", "Details", new { Slug = blogPost.Slug }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = blogPost.Id })
+                        </td>
+                    </tr>
+
+
+                }
+            </tbody>
+
+
+        </table>
+    </div>
+</div>
+
 <br />
 <br />

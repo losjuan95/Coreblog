@@ -8,14 +8,16 @@ using System.Web;
 using System.Web.Mvc;
 using coreblog.Models;
 using Microsoft.AspNet.Identity;
+using coreblog.Helpers;
 
 namespace coreblog.Controllers
 {
     [RequireHttps]
+
     public class CommentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        
         // GET: Comments
         public ActionResult Index()
         {
@@ -50,8 +52,9 @@ namespace coreblog.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+    
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int id, string slug, string commentbody)
+        public ActionResult Create(int id, string slug,[ModelBinder(typeof(AllowHtmlBinder))] string commentbody)
         {
             if (ModelState.IsValid)
             {

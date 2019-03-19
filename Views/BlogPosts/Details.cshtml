@@ -1,123 +1,138 @@
 ﻿@model coreblog.Models.BlogPost
-    <div class="container">
-        <div class="row">
-            <!-- Latest Posts -->
-            <main class="post blog-post col-lg-8">
-                <div class="container">
-                    <div class="post-single">
-                        
-                        <div class="post-thumbnail">
-                            @if (Model.MediaURL != null)
+<div class="container">
+    <div class="row">
+        <!-- Latest Posts -->
+        <main class="post blog-post col-lg-8">
+            <div class="container">
+                <div class="post-single">
+
+                    <div class="post-thumbnail">
+                        @if (Model.MediaURL != null)
+                        {
+                            <img src="@Model.MediaURL" alt="..." class="img-fluid">
+                        }
+
+                    </div>
+
+                    <div class="post-details">
+                        <div class="post-meta d-flex justify-content-between">
+
+                        </div>
+                        <h1>@Model.Title<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
+                        <div class="post-footer d-flex align-items-center flex-column flex-sm-row">
+                            <a href="#" class="author d-flex align-items-center flex-wrap">
+                                <div class="avatar">
+                                    <img src="~/img/avatar-1.jpg" alt="..." class="img-fluid" />
+                                </div>
+
+                                @Html.ActionLink("Juan Carlos Corea", "Index", "Home", null, new { @class = "title" })
+                            </a>
+                            <div class="d-flex align-items-center flex-wrap">
+                                <div class="date"><i class="icon-clock"></i> @Model.Created.ToString("MM/dd/yyyy")</div>
+                            </div>
+                        </div>
+                        <div class="post-body">
+                            @Html.Raw(Model.Body)
+                        </div>
+
+
+                        <div class="post-comments">
+                            <header>
+                                <h3 class="h6">Post Comments<span class="no-of-comments"></span></h3>
+                            </header>
+                            @foreach (var comment in Model.Comments.OrderByDescending(c => c.Created))
                             {
-                                <img src="@Model.MediaURL" alt="..." class="img-fluid">
+                                <div class="comment">
+                                    <div class="comment-header d-flex justify-content-between">
+                                        <div class="user d-flex align-items-center">
+                                            <div class="image"><img src="~/img/defaultavatar.png" alt="..." class="img-fluid rounded-circle"></div>
+                                            <div class="title"><strong>@comment.Author.FirstName</strong><span class="date">@comment.Created.ToString("MM/dd/yyyy")</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="comment-body">
+                                        <p>@Html.Raw(comment.Body)</p>
+                                    </div>
+                                </div>
+                            }
+
+
+
+
+
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { @class = "form-horizontal" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                    @Html.HiddenFor(m => m.Id)
+                                    @Html.HiddenFor(m => m.Slug)
+                                    <div class="form-group">
+                                        @Html.Label("Add Comment", htmlAttributes: new { @class = "h6" })
+                                        @Html.Editor("commentbody", new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+
+                                    </div>
+
+                                    <button class="btn btn-secondary" type="submit">Submit Commment</button>
+                                }
                             }
 
                         </div>
-
-                        <div class="post-details">
-                            <div class="post-meta d-flex justify-content-between">
-
-                            </div>
-                            <h1>@Model.Title<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
-                            <div class="post-footer d-flex align-items-center flex-column flex-sm-row">
-                                <a href="#" class="author d-flex align-items-center flex-wrap">
-                                    <div class="avatar">
-                                        <img src="~/img/avatar-1.jpg" alt="..." class="img-fluid" />
-                                    </div>
-
-                                    @Html.ActionLink("Juan Carlos Corea", "Index", "Home", null, new { @class = "title" })
-                                </a>
-                                <div class="d-flex align-items-center flex-wrap">
-                                    <div class="date"><i class="icon-clock"></i> @Model.Created.ToString("MM/dd/yyyy")</div>
-                                </div>
-                            </div>
-                            <div class="post-body">
-                                @Html.Raw(Model.Body)
-                            </div>
-
-
-                            <div class="post-comments">
+                        @*<div class="add-comment">
                                 <header>
-                                    <h3 class="h6">Post Comments<span class="no-of-comments"></span></h3>
+                                    <h3 class="h6">Leave a reply</h3>
                                 </header>
-                                @foreach (var comment in Model.Comments.OrderByDescending(c => c.Created))
-                                {
-                                    <div class="comment">
-                                        <div class="comment-header d-flex justify-content-between">
-                                            <div class="user d-flex align-items-center">
-                                                <div class="image"><img src="~/img/defaultavatar.png" alt="..." class="img-fluid rounded-circle"></div>
-                                                <div class="title"><strong>@comment.Author.FirstName</strong><span class="date">@comment.Created.ToString("MM/dd/yyyy")</span></div>
-                                            </div>
+                                <form action="#" class="commenting-form">
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <input type="text" name="username" id="username" placeholder="Name" class="form-control">
                                         </div>
-                                        <div class="comment-body">
-                                            <p>@Html.Raw(comment.Body)</p>
+                                        <div class="form-group col-md-6">
+                                            <input type="email" name="username" id="useremail" placeholder="Email Address (will not be published)" class="form-control">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <textarea name="usercomment" id="usercomment" placeholder="Type your comment" class="form-control"></textarea>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <button type="submit" class="btn btn-secondary">Submit Comment</button>
                                         </div>
                                     </div>
-                                }
-
-
-
-
-
-
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { @class = "form-horizontal" }))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        @Html.HiddenFor(m => m.Id)
-                                        @Html.HiddenFor(m => m.Slug)
-                                        <div class="form-group">
-                                            @Html.Label("Add Comment", htmlAttributes: new { @class = "col-md-2 control-label" })
-                                            @Html.Editor("commentbody", new { htmlAttributes = new { @class = "form-control" } })
-                                        </div>
-
-
-                                        <button type="submit">Add Commment</button>
-                                    }
-                                }
-
-                            </div>
-                            @*<div class="add-comment">
+                                </form>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </main>
+        <aside class="col-lg-4">
+            <!-- Widget [Search Bar Widget]-->
+            <div class="widget search">
                 <header>
-                    <h3 class="h6">Leave a reply</h3>
+                    <h3 class="h6">Search the blog</h3>
                 </header>
-                <form action="#" class="commenting-form">
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <input type="text" name="username" id="username" placeholder="Name" class="form-control">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <input type="email" name="username" id="useremail" placeholder="Email Address (will not be published)" class="form-control">
-                        </div>
-                        <div class="form-group col-md-12">
-                            <textarea name="usercomment" id="usercomment" placeholder="Type your comment" class="form-control"></textarea>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <button type="submit" class="btn btn-secondary">Submit Comment</button>
-                        </div>
+                <form action="#" class="search-form">
+                    <div class="form-group">
+                        <input type="search" placeholder="What are you looking for?">
+                        <button type="submit" class="submit"><i class="icon-search"></i></button>
                     </div>
                 </form>
-            </div>*@
-                        </div>
-                    </div>
-                </div>
-            </main>
-            <aside class="col-lg-4">
-                <!-- Widget [Search Bar Widget]-->
-                <div class="widget search">
-                    <header>
-                        <h3 class="h6">Search the blog</h3>
-                    </header>
-                    <form action="#" class="search-form">
-                        <div class="form-group">
-                            <input type="search" placeholder="What are you looking for?">
-                            <button type="submit" class="submit"><i class="icon-search"></i></button>
-                        </div>
-                    </form>
-                </div>
-              
-            </aside>
-        </div>
+            </div>
+
+        </aside>
     </div>
-    
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script>
+    $(function () {
+        tinymce.init({
+            selector: '#commentbody'
+        });
+    });
+    </script>
+}

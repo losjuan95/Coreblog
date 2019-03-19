@@ -28,7 +28,7 @@
     </div>
 </section>
 <section class="featured-posts no-padding-top">
-    
+
     <div class="container">
 
 
@@ -44,7 +44,7 @@
                             <div class="content">
                                 <header class="post-header">
                                     <div class="category">
-                                      
+
                                     </div>
                                     <a href=@Url.Action("Details","BlogPosts", new { slug = @post.Slug})>
                                         <h2 class="h4">@post.Title</h2>
@@ -67,6 +67,7 @@
             }
             else
             {
+                <br />
                 <!-- Post        -->
                 <div class="row d-flex align-items-stretch">
                     <div class="image col-lg-5"><img src=@post.MediaURL alt="..."></div>
@@ -75,7 +76,7 @@
                             <div class="content">
                                 <header class="post-header">
                                     <div class="category">
-                                       
+
                                     </div>
                                     <a href=@Url.Action("Details","BlogPosts", new { slug = @post.Slug})>
                                         <h2 class="h4">@post.Title</h2>
@@ -98,18 +99,26 @@
             }
             loop++;
         }
-        
-
-
-
 
     </div>
+    <div class="container">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination pagination-template d-flex justify-content-lg-between">
 
+                <li class="page-item page-link">
 
+                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchStr = ViewBag.Search }))
+                </li>
 
+            </ul>
 
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchStr = ViewBag.Search }));
+        </nav>
+
+    </div>
+    
+
+   
 </section>
 <!-- Divider Section-->
 <section style="

@@ -45,23 +45,32 @@
                     <br />
 
                     <!-- Pagination -->
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination pagination-template d-flex justify-content-center">
-                            <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
-                            <li class="page-item"><a href="#" class="page-link active">1</a></li>
-                            <li class="page-item"><a href="#" class="page-link">2</a></li>
-                            <li class="page-item"><a href="#" class="page-link">3</a></li>
-                            <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
-                        </ul>
-                    </nav>
+                    @*<nav aria-label="Page navigation example">
+                            <ul class="pagination pagination-template d-flex justify-content-center">
+                                <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+                                <li class="page-item"><a href="#" class="page-link active">1</a></li>
+                                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                <li class="page-item"><a href="#" class="page-link">3</a></li>
+                                <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
+                            </ul>
+                        </nav>*@
 
-                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-                    @Html.PagedListPager(Model, page => Url.Action("BlogPosts", new { page, searchStr = ViewBag.Search }));
 
-                    @*page @(model.pagecount < model.pagenumber ? 0 : model.pagenumber) of @model.pagecount
-                    @html.pagedlistpager(model, page => url.action("BlogPosts", new { page, searchstr = viewbag.search }));*@
                 </div>
             </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pagination-template d-flex justify-content-lg-between">
+
+                    <li class="page-item page-link">
+
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("BlogPosts", new { page, searchStr = ViewBag.Search }))
+
+                    </li>
+
+                </ul>
+
+            </nav>
         </main>
         <aside class="col-lg-4">
             <!-- Widget [Search Bar Widget]-->
